@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">地图日记</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">设置</string>
+
+    <string name="menu_memo">备忘</string>
+    <string name="menu_map">地图</string>
+    <string name="menu_quick_add">快速添加</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
