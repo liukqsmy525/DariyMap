@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".StartActivity"
+            android:name="com.example.liuk.Activity.StartActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,11 +18,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.liuk.Activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name="com.example.liuk.Activity.PhotoViewerActivity" />
         <activity android:name="com.example.liuk.Activity.VidewViewerActivity" />
-        <activity android:name="com.example.liuk.DB.MemoDB"></activity>
+        <activity android:name="com.example.liuk.DB.MemoDB" />
+        <activity android:name="com.example.liuk.Activity.MemoEditActivity"></activity>
     </application>
 
 </manifest>
