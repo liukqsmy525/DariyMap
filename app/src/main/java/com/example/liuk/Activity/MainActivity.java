@@ -1,9 +1,8 @@
 package com.example.liuk.Activity;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,8 +12,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
-import com.example.liuk.DB.MemoDB;
+import com.example.liuk.Fragment.MemoEditFragment;
 import com.example.liuk.myapplication.R;
 
 public class MainActivity extends AppCompatActivity
@@ -46,6 +46,22 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        Button btn = (Button)findViewById(R.id.testButton);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MemoEditFragment memoEditFragment = new MemoEditFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.content_layout,memoEditFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+
+
+            }
+        });
     }
 
     @Override
