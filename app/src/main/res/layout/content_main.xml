@@ -12,11 +12,7 @@
         android:id="@+id/content_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <fragment
-            android:id="@+id/content_fragment"
-            android:name="com.example.liuk.Fragment.ContentFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></fragment>
+
     </FrameLayout>
 
 

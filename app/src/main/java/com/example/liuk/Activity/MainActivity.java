@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import com.example.liuk.Fragment.ContentFragment;
 import com.example.liuk.Fragment.MemoEditFragment;
 import com.example.liuk.myapplication.R;
 
@@ -45,6 +46,12 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        ContentFragment contentFragment = new ContentFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.content_layout,contentFragment);
+        transaction.commit();
 
         Button btn = (Button)findViewById(R.id.testButton);
 
