@@ -3,6 +3,7 @@ package com.example.liuk.Activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -10,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.liuk.Fragment.ContentFragment;
 import com.example.liuk.Fragment.MemoEditFragment;
@@ -18,7 +21,9 @@ import com.example.liuk.myapplication.R;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
+    TextView menu_memo = null;
+    TextView menu_map = null;
+    TextView menu_add = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,9 +49,62 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        /**
+         * 为内容布局动态添加Fragment
+         */
+        ContentFragment contentFragment = new ContentFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.content_layout,contentFragment);
+        transaction.commit();
+
+        menu_memo = (TextView)findViewById(R.id.menu_memo);
+        menu_map = (TextView)findViewById(R.id.menu_map);
+        menu_add = (TextView)findViewById(R.id.menu_add);
+
+        if (menu_memo != null) {
+            clickHandler(menu_memo);
+        }
+        if (menu_map != null) {
+            clickHandler(menu_map);
+        }
+        if (menu_add != null) {
+            clickHandler(menu_add);
+        }
 
     }
 
+
+    public void clickHandler(View v)
+    {
+        switch (v.getId())
+        {
+            case R.id.menu_memo:
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ContentFragment contentFragment = new ContentFragment();
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        FragmentTransaction transaction = fragmentManager.beginTransaction();
+                        transaction.replace(R.id.content_layout,contentFragment);
+                        transaction.commit();
+                    }
+                });
+                break;
+            case R.id.menu_map:
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        MemoEditFragment memoEditFragment = new MemoEditFragment();
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        FragmentTransaction transaction = fragmentManager.beginTransaction();
+                        transaction.replace(R.id.content_layout,memoEditFragment);
+                        transaction.commit();
+                    }
+                });
+                break;
+        }
+    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
