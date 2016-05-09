@@ -47,6 +47,7 @@ public class MemoEditFragment extends Fragment {
         return fragment;
     }
 
+    private int memoId = -1;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +55,8 @@ public class MemoEditFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        //memoId = getI
     }
 
     @Override

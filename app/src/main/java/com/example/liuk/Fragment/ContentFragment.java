@@ -64,9 +64,9 @@ public class ContentFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.memo_list_fragment,container,false);
+        View view = inflater.inflate(R.layout.fragment_memo_list,container,false);
 
-        Button btn = (Button)view.findViewById(R.id.testButton);
+        Button btn = (Button)view.findViewById(R.id.btn_add_memo);
 
         if(btn != null)
         {
