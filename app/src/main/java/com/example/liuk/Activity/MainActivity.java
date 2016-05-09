@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity
 
         if (menu_memo != null) {
             clickHandler(menu_memo);
+
         }
         if (menu_map != null) {
             clickHandler(menu_map);
@@ -88,7 +89,6 @@ public class MainActivity extends AppCompatActivity
                         FragmentTransaction transaction = fragmentManager.beginTransaction();
                         transaction.replace(R.id.content_layout,contentFragment);
 
-                        
                         transaction.commit();
                     }
                 });
@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity
                         FragmentManager fragmentManager = getSupportFragmentManager();
                         FragmentTransaction transaction = fragmentManager.beginTransaction();
                         transaction.replace(R.id.content_layout,memoEditFragment);
+
                         transaction.commit();
                     }
                 });
