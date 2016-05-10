@@ -126,11 +126,10 @@ public class MainActivity extends AppCompatActivity
                         FragmentTransaction transaction = fragmentManager.beginTransaction();
                         transaction.replace(R.id.content_layout,memoEditFragment);
 
-                       /*
-                        transaction.hide(ContentFragment.this);
-                        transaction.add(R.id.content_layout,memoEditFragment,"another");
+                        //transaction.hide(ContentFragment.this);
+                        //transaction.add(R.id.content_layout,memoEditFragment,"another");
 
-                        transaction.addToBackStack(null);*/
+                        transaction.addToBackStack(null);
 
                         transaction.commit();
                     }
