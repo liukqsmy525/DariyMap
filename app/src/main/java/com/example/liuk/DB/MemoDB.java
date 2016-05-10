@@ -18,14 +18,14 @@ public class MemoDB extends SQLiteOpenHelper {
     public  static final String COLUMN_PHONE_ID = "phone_id";
     public  static final String COLUMN_MEMO_TITLE = "title";
     public  static final String COLUMN_MEMO_GEO = "geo";
-    public  static final String COLUMN_MEMO_ADRESS = "adress";
+    public  static final String COLUMN_MEMO_ADDRESS = "address";
     public  static final String COLUMN_MEMO_GEO_IDENTIFIER = "geo_identifier";
     public  static final String COLUMN_MEMO_CREATE_DATE = "create_date";
     public  static final String COLUMN_MEMO_CREATE_TIME = "create_time";
     public  static final String COLUMN_MEMO_REMIND_DATE = "remind_date";
     public  static final String COLUMN_MEMO_REMIND_TIME = "remind_time";
     public  static final String COLUMN_MEMO_MODIFY_DATE = "modify_date";
-    public  static final String COLUMN_MEMO_MODIFY_TIME = "modifu_time";
+    public  static final String COLUMN_MEMO_MODIFY_TIME = "modify_time";
     public  static final String COLUMN_MEMO_IS_REMEND = "is_remind";
     public  static final String COLUMN_MEMO_IS_REPEAT = "is_repeat";
     public  static final String COLUMN_MEMO_REPEAT_CODE = "repeat_code";
@@ -42,8 +42,8 @@ public class MemoDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("create table" + TABLE_MEMO + "(" +
-                COLUMN_ID + " integer primary key autoincreament, " +
+        sqLiteDatabase.execSQL("create table " + TABLE_MEMO + " (" +
+                COLUMN_ID + " integer primary key autoincrement, " +
                 COLUMN_MEMO_CONTENT + " text not null default \"\"," +
                 COLUMN_MEMO_STATUS + " integer not null default 0," +
                 COLUMN_MEMO_TITLE + " text not null default \"\"," +
@@ -51,22 +51,22 @@ public class MemoDB extends SQLiteOpenHelper {
                 COLUMN_PHONE_ID + "integer not null," +
                 COLUMN_MEMO_GEO + " text not null default \"\"," +
                 COLUMN_MEMO_GEO_IDENTIFIER + " text not null default \"\"," +
-                COLUMN_MEMO_ADRESS + " text not null default \"\"," +
+                COLUMN_MEMO_ADDRESS + " text not null default \"\"," +
                 COLUMN_MEMO_CREATE_DATE + " text not null default \"\"," +
                 COLUMN_MEMO_CREATE_TIME + " text not null default \"\"," +
                 COLUMN_MEMO_REMIND_DATE + " text not null default \"\"," +
                 COLUMN_MEMO_REMIND_TIME + " text not null default \"\"," +
                 COLUMN_MEMO_MODIFY_DATE + " text not null default \"\"," +
                 COLUMN_MEMO_MODIFY_TIME + " text not null default \"\"," +
-                COLUMN_MEMO_IS_REMEND + "integer not null default 0," +
-                COLUMN_MEMO_IS_REPEAT + "integer not null default 0," +
-                COLUMN_MEMO_REPEAT_CODE + "integer not null default 0," +")"
+                COLUMN_MEMO_IS_REMEND + " integer not null default 0," +
+                COLUMN_MEMO_IS_REPEAT + " integer not null default 0," +
+                COLUMN_MEMO_REPEAT_CODE + " integer not null default 0" +")"
         );
 
-        sqLiteDatabase.execSQL("create table" + TABLE_MEDIA + "(" +
-                COLUMN_ID + " integer primary key autoincreament, " +
+        sqLiteDatabase.execSQL("create table " + TABLE_MEDIA + " (" +
+                COLUMN_ID + " integer primary key autoincrement, " +
                 COLUMN_MEDIA_PATH + " text not null default \"\"," +
-                COLUMN_MEDIA_OWNER_ID + " integer not null default 0," +")"
+                COLUMN_MEDIA_OWNER_ID + " integer not null default 0" +")"
         );
 
     }

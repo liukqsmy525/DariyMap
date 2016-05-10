@@ -28,9 +28,9 @@
                     android:text="@string/menu_memo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/button_selected_color"
                     android:gravity="right"
                     android:layout_weight="5"
+                    android:textColor="@color/button_unSelected_color"
                     android:paddingRight="10dp" />
                 <TextView android:id="@+id/menu_map"
                     android:textSize="20dp"
@@ -39,6 +39,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="left"
                     android:layout_weight="4"
+                    android:textColor="@color/button_unSelected_color"
                     android:paddingLeft="10dp" />
 
                 <TextView android:id="@+id/menu_add"
@@ -48,6 +49,7 @@
                     android:textSize="35dp"
                     android:gravity="center"
                     android:layout_weight="1"
+                    android:textColor="@color/button_unSelected_color"
                     android:paddingRight="10dp" />
             </android.support.v7.widget.LinearLayoutCompat>
 

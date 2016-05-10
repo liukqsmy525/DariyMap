@@ -14,7 +14,7 @@
         android:layout_height="match_parent">
         <!--<fragment
             android:id="@+id/content_fragment"
-            class="com.example.liuk.Fragment.ContentFragment"
+            class="com.example.liuk.Fragment.MemoListFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>-->
     </FrameLayout>

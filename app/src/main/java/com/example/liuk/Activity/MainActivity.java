@@ -1,6 +1,5 @@
 package com.example.liuk.Activity;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
@@ -15,8 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.liuk.Fragment.ContentFragment;
-import com.example.liuk.Fragment.MemoEditFragment;
+import com.example.liuk.Fragment.MemoAddFragment;
+import com.example.liuk.Fragment.MemoListFragment;
 import com.example.liuk.myapplication.R;
 
 public class MainActivity extends AppCompatActivity
@@ -53,10 +52,10 @@ public class MainActivity extends AppCompatActivity
         /**
          * 为内容布局动态添加Fragment
          */
-        ContentFragment contentFragment = new ContentFragment();
+        MemoListFragment memoListFragment = new MemoListFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.content_layout,contentFragment);
+        transaction.replace(R.id.content_layout,memoListFragment);
         transaction.commit();
 
         menu_memo = (TextView)findViewById(R.id.menu_memo);
@@ -85,15 +84,10 @@ public class MainActivity extends AppCompatActivity
                 v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        ContentFragment contentFragment = new ContentFragment();
+                        MemoListFragment memoListFragment = new MemoListFragment();
                         FragmentManager fragmentManager = getSupportFragmentManager();
                         FragmentTransaction transaction = fragmentManager.beginTransaction();
-                        transaction.replace(R.id.content_layout,contentFragment);
-
-                        TextView textView = (TextView)findViewById(R.id.menu_memo);
-                        textView.setTextColor(Color.parseColor("#FF6600"));
-                        TextView otherView = (TextView)findViewById(R.id.menu_map);
-                        otherView.setTextColor(Color.parseColor("#ffffff"));
+                        transaction.replace(R.id.content_layout,memoListFragment);
 
                         transaction.commit();
                     }
@@ -103,15 +97,10 @@ public class MainActivity extends AppCompatActivity
                 v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        MemoEditFragment memoEditFragment = new MemoEditFragment();
+                        MemoAddFragment memoEditFragment = new MemoAddFragment();
                         FragmentManager fragmentManager = getSupportFragmentManager();
                         FragmentTransaction transaction = fragmentManager.beginTransaction();
                         transaction.replace(R.id.content_layout,memoEditFragment);
-
-                        TextView textView = (TextView)findViewById(R.id.menu_map);
-                        textView.setTextColor(Color.parseColor("#FF6600"));
-                        TextView otherView = (TextView)findViewById(R.id.menu_memo);
-                        otherView.setTextColor(Color.parseColor("#ffffff"));
 
                         transaction.commit();
                     }
@@ -121,13 +110,11 @@ public class MainActivity extends AppCompatActivity
                 v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        MemoEditFragment memoEditFragment = new MemoEditFragment();
+                        MemoAddFragment memoAddFragment = new MemoAddFragment();
                         FragmentManager fragmentManager = getSupportFragmentManager();
                         FragmentTransaction transaction = fragmentManager.beginTransaction();
-                        transaction.replace(R.id.content_layout,memoEditFragment);
+                        transaction.replace(R.id.content_layout,memoAddFragment);
 
-                        //transaction.hide(ContentFragment.this);
-                        //transaction.add(R.id.content_layout,memoEditFragment,"another");
 
                         transaction.addToBackStack(null);
 
