@@ -1,5 +1,6 @@
 package com.example.liuk.Activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
@@ -89,6 +90,11 @@ public class MainActivity extends AppCompatActivity
                         FragmentTransaction transaction = fragmentManager.beginTransaction();
                         transaction.replace(R.id.content_layout,contentFragment);
 
+                        TextView textView = (TextView)findViewById(R.id.menu_memo);
+                        textView.setTextColor(Color.parseColor("#FF6600"));
+                        TextView otherView = (TextView)findViewById(R.id.menu_map);
+                        otherView.setTextColor(Color.parseColor("#ffffff"));
+
                         transaction.commit();
                     }
                 });
@@ -101,6 +107,30 @@ public class MainActivity extends AppCompatActivity
                         FragmentManager fragmentManager = getSupportFragmentManager();
                         FragmentTransaction transaction = fragmentManager.beginTransaction();
                         transaction.replace(R.id.content_layout,memoEditFragment);
+
+                        TextView textView = (TextView)findViewById(R.id.menu_map);
+                        textView.setTextColor(Color.parseColor("#FF6600"));
+                        TextView otherView = (TextView)findViewById(R.id.menu_memo);
+                        otherView.setTextColor(Color.parseColor("#ffffff"));
+
+                        transaction.commit();
+                    }
+                });
+                break;
+            case R.id.menu_add:
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        MemoEditFragment memoEditFragment = new MemoEditFragment();
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        FragmentTransaction transaction = fragmentManager.beginTransaction();
+                        transaction.replace(R.id.content_layout,memoEditFragment);
+
+                       /*
+                        transaction.hide(ContentFragment.this);
+                        transaction.add(R.id.content_layout,memoEditFragment,"another");
+
+                        transaction.addToBackStack(null);*/
 
                         transaction.commit();
                     }

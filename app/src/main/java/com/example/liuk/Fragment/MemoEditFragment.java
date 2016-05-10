@@ -1,11 +1,14 @@
 package com.example.liuk.Fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.example.liuk.Activity.MainActivity;
 import com.example.liuk.myapplication.R;
 
 /**
@@ -48,6 +51,7 @@ public class MemoEditFragment extends Fragment {
     }
 
     private int memoId = -1;
+    TextView textView = null;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,14 +60,37 @@ public class MemoEditFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
+        MainActivity activity = (MainActivity)getActivity();
+        textView = (TextView)activity.findViewById(R.id.menu_add);
+
+
         //memoId = getI
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_memo_edit, container, false);
+        View view = inflater.inflate(R.layout.fragment_memo_edit, container, false);
+
+
+        if(textView != null){
+            textView.setTextColor(Color.parseColor("#FF6600"));
+        }
+
+
+        return view;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        if(textView != null){
+            textView.setTextColor(Color.parseColor("#FFFFFF"));
+        }
+
     }
 
 

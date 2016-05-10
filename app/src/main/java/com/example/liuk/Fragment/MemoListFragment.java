@@ -127,6 +127,12 @@ public class MemoListFragment extends ListFragment{
         mListener = null;
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
