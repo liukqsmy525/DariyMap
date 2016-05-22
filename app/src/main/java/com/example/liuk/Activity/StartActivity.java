@@ -22,7 +22,7 @@ public class StartActivity extends AppCompatActivity {
            public void run() {
                try {
                    // 一秒后跳转到登录界面
-                   Thread.sleep(1000);
+                   Thread.sleep(100);
                    startActivity(new Intent(StartActivity.this, MainActivity.class));
                    finish();
                } catch (InterruptedException e) {

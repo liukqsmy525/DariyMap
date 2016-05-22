@@ -1,15 +1,20 @@
 package com.example.liuk.Fragment;
 
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.liuk.Activity.MainActivity;
@@ -38,6 +43,14 @@ public class MemoListFragment extends ListFragment{
         @Override
         public void onClick(View view) {
 
+            MemoEditFragment memoEditFragment = new MemoEditFragment();
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.replace(R.id.content_layout,memoEditFragment);
+
+            transaction.addToBackStack(null);
+
+            transaction.commit();
         }
     };
 
@@ -78,28 +91,31 @@ public class MemoListFragment extends ListFragment{
         MainActivity activity = (MainActivity)getActivity();
         textView = (TextView)activity.findViewById(R.id.menu_memo);
 
-        db = new MemoDB(getActivity());
+    }
+
+    public  void refreshMemoListView(){
+        Log.e("MemoListFragment","refreshMemoListView");
+        adapter.changeCursor(dbRead.query(MemoDB.TABLE_MEMO,null,null,null,null,null,MemoDB.COLUMN_MEMO_REMIND_DATE +" desc"));
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        Log.e("MemoListFragment","onCreateView");
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_memo_list, container, false);
+
+        view.findViewById(R.id.btn_add_memo).setOnClickListener(btnAddMemo_clickHandler);
+
+        MainActivity parentAty = (MainActivity)getActivity();
+        db = parentAty.getDb();
+
         dbRead = db.getReadableDatabase();
 
         adapter = new SimpleCursorAdapter(getActivity(),R.layout.memo_list_cell,null, new String[] {MemoDB.COLUMN_MEMO_TITLE,MemoDB.COLUMN_MEMO_REMIND_DATE}, new int[]{R.id.memoTitle,R.id.memoDate});
         setListAdapter(adapter);
 
         refreshMemoListView();
-
-
-    }
-
-    public  void refreshMemoListView(){
-        //adapter.changeCursor(dbRead.query(MemoDB.TABLE_MEMO,null,null,null,null,null,null));
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_memo_list, container, false);
-
-        view.findViewById(R.id.btn_add_memo).setOnClickListener(btnAddMemo_clickHandler);
 
         return view;
     }
@@ -124,5 +140,27 @@ public class MemoListFragment extends ListFragment{
 
     }
 
+    //通过构造方法传递参数
+    public static MemoListFragment getInstance(String text) {
+        MemoListFragment fragment = new MemoListFragment();
+        Bundle args = new Bundle();
+        args.putString("param", text);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        Cursor c = adapter.getCursor();
+        c.moveToPosition(position);
+
+        int memoId = c.getInt(c.getColumnIndex(MemoDB.COLUMN_ID));
+        String memoTitle = c.getString(c.getColumnIndex(MemoDB.COLUMN_MEMO_TITLE));
+        String memoContent = c.getString(c.getColumnIndex(MemoDB.COLUMN_MEMO_CONTENT));
+
+        Log.e("List_Tiltle", memoTitle);
+        MemoEditFragment editFragment = MemoEditFragment.newInstance(memoId, memoTitle, memoContent);
+
+        getFragmentManager().beginTransaction().replace(R.id.content_layout,editFragment).addToBackStack(null).commit();
+    }
 }

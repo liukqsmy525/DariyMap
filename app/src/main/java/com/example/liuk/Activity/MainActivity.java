@@ -9,12 +9,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.liuk.Fragment.MemoAddFragment;
+import com.example.liuk.DB.MemoDB;
+import com.example.liuk.Fragment.MemoEditFragment;
 import com.example.liuk.Fragment.MemoListFragment;
 import com.example.liuk.myapplication.R;
 
@@ -24,12 +26,16 @@ public class MainActivity extends AppCompatActivity
     TextView menu_memo = null;
     TextView menu_map = null;
     TextView menu_add = null;
+
+    private MemoDB db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        db = new MemoDB(this);
 /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +81,10 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    public MemoDB getDb()
+    {
+        return db;
+    }
 
     public void clickHandler(View v)
     {
@@ -97,7 +107,7 @@ public class MainActivity extends AppCompatActivity
                 v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        MemoAddFragment memoEditFragment = new MemoAddFragment();
+                        MemoEditFragment memoEditFragment = new MemoEditFragment();
                         FragmentManager fragmentManager = getSupportFragmentManager();
                         FragmentTransaction transaction = fragmentManager.beginTransaction();
                         transaction.replace(R.id.content_layout,memoEditFragment);
@@ -110,10 +120,10 @@ public class MainActivity extends AppCompatActivity
                 v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        MemoAddFragment memoAddFragment = new MemoAddFragment();
+                        MemoEditFragment memoEditFragment = new MemoEditFragment();
                         FragmentManager fragmentManager = getSupportFragmentManager();
                         FragmentTransaction transaction = fragmentManager.beginTransaction();
-                        transaction.replace(R.id.content_layout,memoAddFragment);
+                        transaction.replace(R.id.content_layout,memoEditFragment);
 
 
                         transaction.addToBackStack(null);

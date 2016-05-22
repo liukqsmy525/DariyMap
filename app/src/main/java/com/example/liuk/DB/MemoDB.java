@@ -3,6 +3,7 @@ package com.example.liuk.DB;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by LIUK on 2016/5/2.
@@ -12,7 +13,7 @@ public class MemoDB extends SQLiteOpenHelper {
     public  static final String TABLE_MEMO = "memo";
     public  static final String TABLE_MEDIA = "media";
 
-    public  static final String COLUMN_ID = "id";
+    public  static final String COLUMN_ID = "_id";
     public  static final String COLUMN_MEMO_CONTENT = "content";
     public  static final String COLUMN_USER_ID = "user_id";
     public  static final String COLUMN_PHONE_ID = "phone_id";
@@ -42,13 +43,14 @@ public class MemoDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        Log.e("MemoDb","create");
         sqLiteDatabase.execSQL("create table " + TABLE_MEMO + " (" +
                 COLUMN_ID + " integer primary key autoincrement, " +
                 COLUMN_MEMO_CONTENT + " text not null default \"\"," +
                 COLUMN_MEMO_STATUS + " integer not null default 0," +
                 COLUMN_MEMO_TITLE + " text not null default \"\"," +
-                COLUMN_USER_ID + "integer not null," +
-                COLUMN_PHONE_ID + "integer not null," +
+               // COLUMN_USER_ID + "integer not null," +
+               // COLUMN_PHONE_ID + "integer not null," +
                 COLUMN_MEMO_GEO + " text not null default \"\"," +
                 COLUMN_MEMO_GEO_IDENTIFIER + " text not null default \"\"," +
                 COLUMN_MEMO_ADDRESS + " text not null default \"\"," +
