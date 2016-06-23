@@ -2,6 +2,7 @@ package com.example.liuk.Fragment;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.PixelFormat;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
@@ -19,6 +21,7 @@ import com.amap.api.maps.LocationSource;
 import com.amap.api.maps.MapView;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.MyLocationStyle;
+import com.example.liuk.Activity.MainActivity;
 import com.example.liuk.myapplication.R;
 
 public class MapFragment extends Fragment implements LocationSource,
@@ -29,6 +32,7 @@ public class MapFragment extends Fragment implements LocationSource,
     private AMapLocationClient mlocationClient;
     private AMapLocationClientOption mLocationOption;
 
+    TextView textView = null;
     
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -69,6 +73,11 @@ public class MapFragment extends Fragment implements LocationSource,
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
+        MainActivity activity = (MainActivity)getActivity();
+       // activity.getWindow().setFormat(PixelFormat.TRANSLUCENT);
+        textView = (TextView)activity.findViewById(R.id.menu_map);
     }
 
     @Override
@@ -169,13 +178,22 @@ public class MapFragment extends Fragment implements LocationSource,
     public void onResume() {
         super.onResume();
         mapView.onResume();
+
+        if(textView != null){
+            textView.setTextColor(Color.parseColor("#FF6600"));
+        }
     }
 
     @Override
     public void onPause() {
+
         super.onPause();
         mapView.onPause();
         deactivate();
+
+        if(textView != null){
+            textView.setTextColor(Color.parseColor("#FFFFFF"));
+        }
     }
 
 
