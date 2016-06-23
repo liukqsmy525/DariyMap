@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.liuk.DB.MemoDB;
+import com.example.liuk.Fragment.MapFragment;
 import com.example.liuk.Fragment.MemoEditFragment;
 import com.example.liuk.Fragment.MemoListFragment;
 import com.example.liuk.myapplication.R;
@@ -107,10 +108,10 @@ public class MainActivity extends AppCompatActivity
                 v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        MemoEditFragment memoEditFragment = new MemoEditFragment();
+                        MapFragment mapFragment = new MapFragment();
                         FragmentManager fragmentManager = getSupportFragmentManager();
                         FragmentTransaction transaction = fragmentManager.beginTransaction();
-                        transaction.replace(R.id.content_layout,memoEditFragment);
+                        transaction.replace(R.id.content_layout,mapFragment);
 
                         transaction.commit();
                     }
